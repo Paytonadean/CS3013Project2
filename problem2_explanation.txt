@@ -1,0 +1,60 @@
+This is the psuedocode and our current gameplan for problem 2
+
+
+main(){
+Array sections = {0,0,0,0,0,0}
+//The array spot quaralates to the section-1 (0 means avalible 1 means locked)
+
+Array ordersSmall = {{1,2},{1,4},{4,6},{2,3},{3,5},{3,4}};
+Array ordersBig = {{1,4,6}, {2,3,5}};
+Array order[3];
+queue waiting;
+function myLargePlanes(){
+    order = ordersBig[srand%2];
+if(!(srand%2 == 0){
+    int switch;
+    switch = order[0];
+    order[0] = order[2];
+    order[2] = switch;
+}
+}
+function mySmallPlanes(){
+    order = ordersSmall[srand%6];
+    if(!(srand%2 == 0){
+    int switch;
+    switch = order[0];
+    order[0] = order[1];
+    order[1] = switch;
+}
+}
+    int i;
+    pthread_t tid;
+
+ for (i = 0; i < 15; i++)
+        pthread_create(&tid, NULL, myLargePlanes, (void *)&tid);
+
+for (i = 0; i<30; i++)
+        pthread_create(&tid, NULL, mySmallPlanes, (void *)&tid);
+
+
+
+//We are going to have planes lock and unlock all regions at the same time so 
+//that random wait times don't cause collisions 
+
+function lock(int startingRegion, int middleRegion, int lastRegion){
+
+}
+function unlock(int startingRegion, int middleRegion, int lastRegion){
+}
+
+//We are going to have functons for each state that the airplanes can go through
+
+function idle(){}
+function waitingForTakeoff(){}
+function takingOff(){}
+function flying(){}
+function waitingToLand(){}
+function landing(){}
+
+
+}
