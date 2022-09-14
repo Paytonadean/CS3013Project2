@@ -1,0 +1,63 @@
+psudocode:
+
+soccer:
+fieldFull.wait()
+    if soccer % 2 == 0 && soccer < 44
+        mutex.signal()
+        fieldInPlay()
+    soccer += 2
+    mutex.signal()
+
+    soccer.signal()
+    football.wait()
+    baseball.wait()
+    soccerPlay()
+
+    mutex.wait()
+    soccer -= 2
+    mutex.signal()
+
+football:
+fieldFull.wait()
+    if football == C
+        mutex.signal
+        fieldInPlay()
+    mutex.signal()
+
+    football.signal()
+    soccer.wait()
+    baseball.wait()
+
+    mutex.wait()
+    football -= C
+    mutex.wait()
+
+baseball:
+fieldFull.wait()
+    if baseball == C
+        mutex.signal
+        fieldInPlay()
+    mutex.signal()
+
+    baseball.signal()
+    soccer.wait()
+    football.wait()
+
+    mutex.wait()
+    baseball -= C
+    mutex.wait()
+
+field:
+load()
+joinQueue.signal(C)
+fieldFull.wait()
+
+play()
+
+offField()
+leaveQueue.signal(C)
+fieldEmpty.wait()
+
+
+
+
