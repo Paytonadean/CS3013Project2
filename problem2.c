@@ -3,6 +3,19 @@
 #include <semaphore.h>
 #include <unistd.h>
 main() {
+    FILE* fp;
+    fp = fopen("seed.txt", "r");
+
+    if (fp == NULL) {
+        printf("Error reading seed.txt\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // seed generation
+    int seed;
+    fscanf(fp, "%d", &seed);
+    printf("Read seed value: %d\n\n", seed);
+    srand(seed);
     sem_t mutex;
     createRegions();
     
