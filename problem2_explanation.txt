@@ -1,4 +1,4 @@
-This is the psuedocode and our current gameplan for problem 2
+I had a lot of software issues with my virtual machine, git hub and terminal so I was not able to run my code as much as I wanted to. This is the psuedocode I think represents my understanding of this project a lot more than the running code (which honestly I dont know if it runs in its current state).
 
 
 main(){
