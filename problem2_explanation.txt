@@ -2,13 +2,17 @@ This is the psuedocode and our current gameplan for problem 2
 
 
 main(){
-Array sections = {0,0,0,0,0,0}
+Array sections = {Null,0,0,0,0,0,0}
 //The array spot quaralates to the section-1 (0 means avalible 1 means locked)
-
 Array ordersSmall = {{1,2},{1,4},{4,6},{2,3},{3,5},{3,4}};
 Array ordersBig = {{1,4,6}, {2,3,5}};
-Array order[3];
+Array order[3]; //Array called order that every thread has
 queue waiting;
+int time;
+sem_t sem;
+sem_t sem2;
+sem_init(&sem,0,1);
+sem_init(&sem2,0,1);
 function myLargePlanes(){
     order = ordersBig[srand%2];
 if(!(srand%2 == 0){
@@ -25,6 +29,7 @@ function mySmallPlanes(){
     switch = order[0];
     order[0] = order[1];
     order[1] = switch;
+    order[2] = Null;
 }
 }
     int i;
@@ -49,12 +54,78 @@ function unlock(int startingRegion, int middleRegion, int lastRegion){
 
 //We are going to have functons for each state that the airplanes can go through
 
-function idle(){}
-function waitingForTakeoff(){}
-function takingOff(){}
-function flying(){}
-function waitingToLand(){}
-function landing(){}
+function idle(p_thread curThread){
+time = rand()%60;
+printf("Plane: %d at terminal /t Time asleep: %d",time, curThread);
+usleep(time);
+}
+function waitingForTakeoff(p_thread curThread){
+time = rand()%60;
+print("Plane %d waiting for takeoff, Sleeping for %d,curThread, time);
+usleep(time);
+ready = False
+while(!ready){ // Sem inside the wait so its not caught on one thread
+sem_wait(&sem);
+if(sections[curThread.order[0]]==0]{
+	if(sections[curThread.order[1]]==0{
+		if(curThread.order[2]== Null || sections[curThread.order[2]] == 0){
+		ready = True;
+		sections[curThread.order[0]] =1;
+		sections[curThread.order[1] = 1;
+		if(curThread.order[2]!=Null){
+		sections[curThread.order[2] = 1;
+		}
+		
+	}
+}
+}
+sem_post(&sem);
+}
+}
+function takingOff(p_thread curThread){
+for(int i=0, i<3; i++){
+	if(curThread.order[i] !=Null){
+printf("Plane: %d in region %d", curThread, curThread.order[i]);
+usleep(rand()%60);
+}
+}
+function flying(p_thread curThread){
+time = rand()%60;
+printf("Plane %d is flying for %d",curThread, time)
+usleep(time);
+}
+function waitingToLand(p_thread curThread){
+time = rand()%60;
+print("Plane %d waiting to land, Sleeping for %d,curThread, time);
+usleep(time);
+ready = False
+while(!ready){ // Sem inside the wait so its not caught on one thread
+sem_wait(&sem2);
+if(sections[curThread.order[0]]==0]{
+	if(sections[curThread.order[1]]==0{
+		if(curThread.order[2]== Null || sections[curThread.order[2]] == 0){
+		ready = True;
+		sections[curThread.order[0]] =1;
+		sections[curThread.order[1] = 1;
+		if(curThread.order[2]!=Null){
+		sections[curThread.order[2] = 1;
+		}
+		
+	}
+}
+}
+sem_post(&sem2);
+}
 
+}
+
+
+
+function landing(p_thread curThread){}
+for(int i=0, i<3; i++){
+	if(curThread.order[i] !=Null){
+printf("Plane: %d in region %d", curThread, curThread.order[i]);
+usleep(rand()%60);
+}
 
 }
